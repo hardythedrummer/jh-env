@@ -1,0 +1,73 @@
+{
+    "workbench.colorTheme": "Tinacious Design",
+    "workbench.sideBar.location": "right",
+    "workbench.colorCustomizations": {
+        "list.hoverBackground": "#007fff33",
+    },
+    "git.confirmSync": false,
+    "window.zoomLevel": 2,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    "eslint.validate": [
+        "javascript"
+    ],
+    "javascript.preferences.quoteStyle": "single",
+    "javascript.preferences.importModuleSpecifierEnding": "js",
+    "typescript.preferences.importModuleSpecifierEnding": "js",
+    "gitlens.remotes": [{ "domain": "bitbucket.internal.taillight.cloud", "type": "BitbucketServer" }],
+    "gitlens.autolinks": [
+        {
+            "prefix": "BNC-",
+            "url": "https://jira.internal.taillight.cloud/browse/BNC-<num>"
+        },
+        {
+            "prefix": "OD-",
+            "url": "https://jira.internal.taillight.cloud/browse/OD-<num>"
+        }
+    ],
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    "debug.javascript.autoAttachFilter": "always",
+    "security.workspace.trust.untrustedFiles": "open",
+    "svelte.enable-ts-plugin": true,
+    "git-graph.showStatusBarItem": false,
+    "gitlens.graph.statusBar.enabled": false,
+    "gitlens.launchpad.indicator.enabled": false,
+    "gitlens.mode.statusBar.enabled": false,
+    "problems.showCurrentInStatus": true,
+    "npm-intellisense.packageSubfoldersIntellisense": true,
+    "npm-intellisense.showBuildInLibs": true,
+    "npm-intellisense.scanDevDependencies": true,
+    "js/ts.implicitProjectConfig.strictFunctionTypes": false,
+    "javascript.format.semicolons": "insert",
+    "javascript.preferGoToSourceDefinition": true,
+    "javascript.suggest.completeFunctionCalls": true,
+    "js/ts.implicitProjectConfig.module": "NodeNext",
+    "git.suggestSmartCommit": false,
+    "eslint.problems.shortenToSingleLine": true,
+    "search.exclude": {
+        "**/node_modules": false,
+        "lib/node_modules": false,
+        "node_modules": true
+    },
+    "files.exclude": {
+        "lib/node_modules": false,
+    },
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/*/**": true,
+        "**/.hg/store/**": true,
+        "lib/node_modules": false,
+    },
+    "search.quickOpen.includeSymbols": true,
+    "path-intellisense.showHiddenFiles": true,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "notebook.find.filters": {
+        "markupSource": true,
+        "markupPreview": true,
+        "codeSource": true,
+        "codeOutput": true
+    },
+    "window.commandCenter": false
+}
