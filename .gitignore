@@ -4,3 +4,4 @@ download/
 test/
 test-data.zip
 *.ipynb
+git/*-local

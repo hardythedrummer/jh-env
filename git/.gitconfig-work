@@ -1,2 +1,5 @@
 [user]
 	email = joey.hardy@taillight.com
+
+[include]
+	path = ~/.gitconfig-work-local
