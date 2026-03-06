@@ -6,16 +6,29 @@
     },
     "git.confirmSync": false,
     "window.zoomLevel": 2,
+    "gitlens.remotes": [{ "domain": "bitbucket.internal.taillight.cloud", "type": "BitbucketServer" }],
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": "explicit"
     },
     "eslint.validate": [
-        "javascript"
+        "javascript",
+        "typescript",
     ],
     "javascript.preferences.quoteStyle": "single",
     "javascript.preferences.importModuleSpecifierEnding": "js",
     "typescript.preferences.importModuleSpecifierEnding": "js",
+    "gitlens.autolinks": [
+        {
+            "prefix": "BNC-",
+            "url": "https://jira.internal.taillight.cloud/browse/BNC-<num>"
+        },
+        {
+            "prefix": "OD-",
+            "url": "https://jira.internal.taillight.cloud/browse/OD-<num>"
+        }
+    ],
     "terminal.integrated.defaultProfile.osx": "zsh",
+    "terminal.integrated.fontFamily": "FiraCode Nerd Font",
     "debug.javascript.autoAttachFilter": "always",
     "security.workspace.trust.untrustedFiles": "open",
     "svelte.enable-ts-plugin": true,
@@ -53,5 +66,17 @@
         "codeSource": true,
         "codeOutput": true
     },
-    "window.commandCenter": false
+    "window.commandCenter": false,
+    "eslint.format.enable": true,
+    "eslint.ignoreUntitled": true,
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "workbench.settings.applyToAllProfiles": [
+        "editor.tabSize"
+    ],
+    "claudeCode.preferredLocation": "panel",
+    "claudeCode.disableLoginPrompt": true,
+    "claudeCode.selectedModel": "opus",
+    "terminal.external.osxExec": "Wezterm"
 }

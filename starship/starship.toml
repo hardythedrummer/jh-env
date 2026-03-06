@@ -1,42 +1,190 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 format = """
+[](color_pink)\
+$os\
+$username\
+[](bg:color_yellow fg:color_pink)\
 $directory\
+[](fg:color_yellow bg:color_aqua)\
 $git_branch\
 $git_status\
-$nix_shell\
+[](fg:color_aqua bg:color_blue)\
+$c\
+$cpp\
+$rust\
+$golang\
 $nodejs\
+$php\
+$java\
+$kotlin\
+$haskell\
 $python\
-$cmd_duration\
-$line_break\
-$character"""
+$nix_shell\
+[](fg:color_blue bg:color_bg3)\
+$docker_context\
+$conda\
+$pixi\
+[](fg:color_bg3 bg:color_bg1)\
+$time\
+[ ](fg:color_bg1)\
+$line_break$character"""
 
-[character]
-success_symbol = "[>](bold #f85b9e)"
-error_symbol = "[>](bold #f9345e)"
+palette = 'tinacious'
+
+[palettes.tinacious]
+color_fg0 = '#ffffff'
+color_bg1 = '#16171e'
+color_bg3 = '#2a2b36'
+color_blue = '#3c7dd2'
+color_aqua = '#29b8db'
+color_green = '#2ec84a'
+color_pink = '#f85b9e'
+color_purple = '#9b59b6'
+color_red = '#f9345e'
+color_yellow = '#e7de40'
+
+[os]
+disabled = false
+style = "bg:color_pink fg:color_fg0"
+
+[os.symbols]
+Windows = "󰍲"
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = "󰀵"
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = "󰣇"
+Artix = "󰣇"
+EndeavourOS = ""
+CentOS = ""
+Debian = "󰣚"
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
+Pop = ""
+
+[username]
+show_always = true
+style_user = "bg:color_pink fg:color_bg3"
+style_root = "bg:color_pink fg:color_fg0"
+format = '[ $user ]($style)'
 
 [directory]
-style = "bold #3c7dd2"
+style = "fg:color_bg3 bg:color_yellow"
+format = "[ $path ]($style)"
 truncation_length = 3
-truncate_to_repo = true
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"Developer" = "󰲋 "
 
 [git_branch]
-style = "bold #f85b9e"
-format = "[$symbol$branch]($style) "
+symbol = ""
+style = "bg:color_aqua"
+format = '[[ $symbol $branch ](fg:color_bg3 bg:color_aqua)]($style)'
 
 [git_status]
-style = "#e7de40"
-format = '([$all_status$ahead_behind]($style) )'
-
-[nix_shell]
-format = '[nix:$name](bold #29b8db) '
+style = "bg:color_aqua"
+format = '[[($all_status$ahead_behind )](fg:color_bg3 bg:color_aqua)]($style)'
 
 [nodejs]
-format = '[node:$version](bold #2ec84a) '
-detect_files = ["package.json"]
+symbol = ""
+style = "bg:color_blue"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+
+[c]
+symbol = " "
+style = "bg:color_blue"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+
+[cpp]
+symbol = " "
+style = "bg:color_blue"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+
+[rust]
+symbol = ""
+style = "bg:color_blue"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+
+[golang]
+symbol = ""
+style = "bg:color_blue"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+
+[php]
+symbol = ""
+style = "bg:color_blue"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+
+[java]
+symbol = ""
+style = "bg:color_blue"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+
+[kotlin]
+symbol = ""
+style = "bg:color_blue"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+
+[haskell]
+symbol = ""
+style = "bg:color_blue"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
 
 [python]
-format = '[py:$version](bold #e7de40) '
+symbol = ""
+style = "bg:color_blue"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
 
-[cmd_duration]
-min_time = 2000
-style = "#636363"
-format = '[$duration]($style) '
+[docker_context]
+symbol = ""
+style = "bg:color_bg3"
+format = '[[ $symbol( $context) ](fg:#83a598 bg:color_bg3)]($style)'
+
+[conda]
+style = "bg:color_bg3"
+format = '[[ $symbol( $environment) ](fg:#83a598 bg:color_bg3)]($style)'
+
+[pixi]
+style = "bg:color_bg3"
+format = '[[ $symbol( $version)( $environment) ](fg:color_fg0 bg:color_bg3)]($style)'
+
+[nix_shell]
+style = 'bg:color_blue'
+symbol = '✶'
+format = '[[ $symbol nix ](fg:color_fg0 bg:color_blue)]($style)'
+#format = '[$symbol nix⎪$state⎪]($style) [$name](italic dimmed white)'
+impure_msg = '[⌽](bold dimmed red)'
+pure_msg = '[⌾](bold dimmed green)'
+unknown_msg = '[◌](bold dimmed ellow)'
+
+[time]
+disabled = false
+time_format = "%R"
+style = "bg:color_bg1"
+format = '[[  $time ](fg:color_fg0 bg:color_bg1)]($style)'
+
+[line_break]
+disabled = false
+
+[character]
+disabled = false
+success_symbol = '[](bold fg:color_green)'
+error_symbol = '[](bold fg:color_red)'
+vimcmd_symbol = '[](bold fg:color_green)'
+vimcmd_replace_one_symbol = '[](bold fg:color_purple)'
+vimcmd_replace_symbol = '[](bold fg:color_purple)'
+vimcmd_visual_symbol = '[](bold fg:color_yellow)'
