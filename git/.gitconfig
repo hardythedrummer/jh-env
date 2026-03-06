@@ -1,0 +1,26 @@
+[user]
+	name = Joey Hardy
+
+[init]
+	defaultBranch = main
+
+[core]
+	editor = code --wait
+
+[pull]
+	rebase = true
+
+[rerere]
+	enabled = true
+
+[alias]
+	co = checkout
+	br = branch
+	st = status
+	lg = log --oneline --graph --decorate -20
+
+[includeIf "gitdir:~/code/jh/"]
+	path = ~/.gitconfig-personal
+
+[includeIf "gitdir:~/code/"]
+	path = ~/.gitconfig-work

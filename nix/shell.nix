@@ -5,14 +5,8 @@ in
 
 pkgs.mkShell {
   name = "dev-shell";
-  command = "zsh";
   packages = with pkgs; [
     git
-    nodenv
+    nodejs_20
   ];
-
-  shellHook = ''
-    nodenv install 20.10.0
-    nodenv global 20.10.0
-  '';
 }

@@ -1,0 +1,6 @@
+.DS_Store
+.ipynb_checkpoints/
+download/
+test/
+test-data.zip
+*.ipynb

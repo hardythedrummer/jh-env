@@ -1,0 +1,42 @@
+format = """
+$directory\
+$git_branch\
+$git_status\
+$nix_shell\
+$nodejs\
+$python\
+$cmd_duration\
+$line_break\
+$character"""
+
+[character]
+success_symbol = "[>](bold #f85b9e)"
+error_symbol = "[>](bold #f9345e)"
+
+[directory]
+style = "bold #3c7dd2"
+truncation_length = 3
+truncate_to_repo = true
+
+[git_branch]
+style = "bold #f85b9e"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "#e7de40"
+format = '([$all_status$ahead_behind]($style) )'
+
+[nix_shell]
+format = '[nix:$name](bold #29b8db) '
+
+[nodejs]
+format = '[node:$version](bold #2ec84a) '
+detect_files = ["package.json"]
+
+[python]
+format = '[py:$version](bold #e7de40) '
+
+[cmd_duration]
+min_time = 2000
+style = "#636363"
+format = '[$duration]($style) '

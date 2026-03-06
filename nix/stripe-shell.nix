@@ -9,10 +9,11 @@ pkgs.mkShell {
   inputsFrom = [ baseShell ];
   packages = with pkgs; [
     terraform
+    terragrunt
     stripe-cli
   ];
 
-  shellHook=''
+  shellHook = ''
     alias tf="terraform"
   '';
 }
