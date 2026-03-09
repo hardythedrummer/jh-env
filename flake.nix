@@ -15,8 +15,10 @@
       # packages included in every shell
       basePackages = pkgs: with pkgs; [
         git
-        nodejs_20
+        nodenv
         starship
+        bat
+        direnv
         zsh-autosuggestions
         zsh-syntax-highlighting
       ];
