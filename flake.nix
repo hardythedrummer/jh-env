@@ -23,10 +23,10 @@
         zsh-syntax-highlighting
       ];
 
-      # zsh plugins + starship, shared across all shells
+      # export plugin paths for zshrc to source, then switch to zsh
       baseShellHook = pkgs: ''
-        source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-        source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+        export ZSH_AUTOSUGGEST_PLUGIN="${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+        export ZSH_SYNTAX_HIGHLIGHT_PLUGIN="${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
         exec zsh
       '';
 

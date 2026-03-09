@@ -43,5 +43,26 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
 
+# --- zsh plugins (from nix) ---
+[ -n "$ZSH_AUTOSUGGEST_PLUGIN" ] && source "$ZSH_AUTOSUGGEST_PLUGIN"
+[ -n "$ZSH_SYNTAX_HIGHLIGHT_PLUGIN" ] && source "$ZSH_SYNTAX_HIGHLIGHT_PLUGIN"
+
+# --- syntax highlighting colors (tinacious) ---
+ZSH_HIGHLIGHT_STYLES[command]='fg=#2ec84a'            # green — valid commands
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=#2ec84a'            # green — builtins (cd, echo)
+ZSH_HIGHLIGHT_STYLES[alias]='fg=#2ec84a'              # green — aliases
+ZSH_HIGHLIGHT_STYLES[function]='fg=#2ec84a'           # green — functions
+ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#f9345e'      # red — unknown/invalid commands
+ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=#f85b9e'      # pink — if, then, do, etc.
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=#e7de40'   # yellow — 'strings'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#e7de40'   # yellow — "strings"
+ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=#e7de40'   # yellow — $'strings'
+ZSH_HIGHLIGHT_STYLES[path]='fg=#3c7dd2,underline'     # blue — valid paths
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=#29b8db'            # cyan — wildcards (*.txt)
+ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=#f85b9e'   # pink — ; && || pipes
+ZSH_HIGHLIGHT_STYLES[redirection]='fg=#f85b9e'        # pink — > >> <
+ZSH_HIGHLIGHT_STYLES[comment]='fg=#636363'             # dim — comments
+ZSH_HIGHLIGHT_STYLES[arg0]='fg=#2ec84a'               # green — first word
+
 # --- starship prompt (keep at end) ---
 eval "$(starship init zsh)"
