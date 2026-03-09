@@ -24,9 +24,16 @@ alias dc="docker compose"
 alias dcps='docker compose ps --format "table {{.Service}}\t{{.Status}}\t{{.Ports}}"'
 alias ls="ls --color=auto"
 alias ll="ls -la"
-alias gs="git status"
+alias gst="git status"
 alias gd="git diff"
 alias gl="git log --oneline -20"
+alias gco="git checkout"
+
+# --- nix shells ---
+export JH_ENV="$HOME/code/jh/jh-env"
+alias nix-dev="nix develop $JH_ENV"
+alias nix-stripe="nix develop $JH_ENV#stripe"
+alias nix-sage="nix develop $JH_ENV#sage"
 
 # --- nvm ---
 export NVM_DIR="$HOME/.nvm"

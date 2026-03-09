@@ -20,12 +20,12 @@ config.cursor_blink_rate = 500
 -- tab bar
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
-config.use_fancy_tab_bar = false
+config.use_fancy_tab_bar = true
 
 -- tinacious design color scheme
 config.colors = {
   foreground = "#cccccc",
-  background = "#1d1e26",
+  background = "#222431",
   cursor_bg = "#f85b9e",
   cursor_fg = "#1d1e26",
   cursor_border = "#f85b9e",
