@@ -37,5 +37,7 @@ link "$DOTFILES/git/.gitconfig"          "$HOME/.gitconfig"
 link "$DOTFILES/git/.gitconfig-personal" "$HOME/.gitconfig-personal"
 link "$DOTFILES/git/.gitconfig-work"     "$HOME/.gitconfig-work"
 link "$DOTFILES/nix/nix.conf"            "$HOME/.config/nix/nix.conf"
+link "$DOTFILES/claude/settings.json"   "$HOME/.claude/settings.json"
+link "$DOTFILES/claude/get-key.sh"      "$HOME/.claude/get-key.sh"
 
 echo "done. restart your shell to apply changes."
