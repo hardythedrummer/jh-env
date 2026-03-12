@@ -18,16 +18,17 @@
         nodenv
         starship
         bat
+        ripgrep
+        jq
         direnv
         zsh-autosuggestions
         zsh-syntax-highlighting
       ];
 
-      # export plugin paths for zshrc to source, then switch to zsh
+      # export plugin paths for zshrc to source
       baseShellHook = pkgs: ''
         export ZSH_AUTOSUGGEST_PLUGIN="${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
         export ZSH_SYNTAX_HIGHLIGHT_PLUGIN="${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-        exec zsh
       '';
 
       # helper to create a shell with base packages + extras
@@ -49,16 +50,18 @@
         stripe = mkDevShell pkgs {
           name = "stripe";
           description = "Stripe dev shell with terraform and stripe-cli";
-          extraPackages = with pkgs; [ terraform terragrunt stripe-cli ];
+          extraPackages = with pkgs; [ 
+            terraform 
+            terragrunt 
+            stripe-cli 
+          ];
           shellHook = ''alias tf="terraform"'';
         };
 
         sage = mkDevShell pkgs {
-          name = "sage";
+          name = "data";
           description = "Data analysis shell with python, jupyter, and AWS";
           extraPackages = with pkgs; [
-            awscli2
-            stripe-cli
             nbstripout
             (python3.withPackages (py: [
               py.jupyter

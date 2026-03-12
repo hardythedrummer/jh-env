@@ -12,7 +12,7 @@
     },
     "eslint.validate": [
         "javascript",
-        "typescript",
+        "typescript"
     ],
     "javascript.preferences.quoteStyle": "single",
     "javascript.preferences.importModuleSpecifierEnding": "js",

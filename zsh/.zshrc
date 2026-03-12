@@ -1,5 +1,5 @@
 # --- path ---
-export PATH="$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/bin:/usr/local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 
 # --- history ---
 HISTFILE=~/.zsh_history
@@ -28,12 +28,13 @@ alias gst="git status"
 alias gd="git diff"
 alias gl="git log --oneline -20"
 alias gco="git checkout"
+alias loc="git ls-files | grep \".*js$\" | xargs wc -l"
 
 # --- nix shells ---
 export JH_ENV="$HOME/code/jh/jh-env"
-alias nix-dev="nix develop $JH_ENV"
-alias nix-stripe="nix develop $JH_ENV#stripe"
-alias nix-sage="nix develop $JH_ENV#sage"
+alias nix-dev="nix develop $JH_ENV --command zsh"
+alias nix-stripe="nix develop $JH_ENV#stripe --command zsh"
+alias nix-data="nix develop $JH_ENV#data --command zsh"
 
 # --- nodenv ---
 eval "$(nodenv init - zsh)"
@@ -63,6 +64,9 @@ ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=#f85b9e'   # pink — ; && || pipes
 ZSH_HIGHLIGHT_STYLES[redirection]='fg=#f85b9e'        # pink — > >> <
 ZSH_HIGHLIGHT_STYLES[comment]='fg=#636363'             # dim — comments
 ZSH_HIGHLIGHT_STYLES[arg0]='fg=#2ec84a'               # green — first word
+
+# --- direnv ---
+[ -f /opt/homebrew/bin/direnv ] && eval "$(/opt/homebrew/bin/direnv hook zsh)"
 
 # --- starship prompt (keep at end) ---
 eval "$(starship init zsh)"

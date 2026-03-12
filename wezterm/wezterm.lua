@@ -5,7 +5,7 @@ local config = wezterm.config_builder()
 config.initial_cols = 120
 config.initial_rows = 28
 config.window_padding = { left = 12, right = 12, top = 12, bottom = 12 }
-config.window_decorations = "RESIZE"
+config.window_decorations = "TITLE | RESIZE"
 config.window_background_opacity = 0.96
 
 -- font
@@ -20,7 +20,7 @@ config.cursor_blink_rate = 500
 -- tab bar
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
-config.use_fancy_tab_bar = true
+config.use_fancy_tab_bar = false
 
 -- tinacious design color scheme
 config.colors = {
@@ -60,5 +60,10 @@ config.colors = {
     new_tab_hover = { bg_color = "#1d1e26", fg_color = "#f85b9e" },
   },
 }
+
+-- launch nix dev shell via direnv on startup
+config.default_cwd = wezterm.home_dir .. "/code"
+config.default_prog = { "zsh" }
+
 
 return config
