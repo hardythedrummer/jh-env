@@ -29,15 +29,33 @@ else
 fi
 
 # --- symlinks ---
-link "$DOTFILES/zsh/.zshrc"             "$HOME/.zshrc"
-link "$DOTFILES/wezterm/wezterm.lua"    "$HOME/.wezterm.lua"
-link "$DOTFILES/starship/starship.toml" "$HOME/.config/starship.toml"
+link "$DOTFILES/zsh/.zshrc"              "$HOME/.zshrc"
+link "$DOTFILES/wezterm/wezterm.lua"     "$HOME/.wezterm.lua"
+link "$DOTFILES/starship/starship.toml"  "$HOME/.config/starship.toml"
 link "$DOTFILES/vscode/settings.json"    "$HOME/Library/Application Support/Code/User/settings.json"
 link "$DOTFILES/git/.gitconfig"          "$HOME/.gitconfig"
 link "$DOTFILES/git/.gitconfig-personal" "$HOME/.gitconfig-personal"
 link "$DOTFILES/git/.gitconfig-work"     "$HOME/.gitconfig-work"
 link "$DOTFILES/nix/nix.conf"            "$HOME/.config/nix/nix.conf"
-link "$DOTFILES/claude/settings.json"   "$HOME/.claude/settings.json"
-link "$DOTFILES/claude/get-key.sh"      "$HOME/.claude/get-key.sh"
+link "$DOTFILES/claude/settings.json"    "$HOME/.claude/settings.json"
+link "$DOTFILES/get-key.sh"              "$HOME/.claude/get-key.sh"
+
+# --- ~/code direnv ---
+if [ ! -f "$HOME/code/.envrc" ]; then
+  mkdir -p "$HOME/code"
+  echo "use flake ~/code/jh/jh-env" > "$HOME/code/.envrc"
+  echo "created ~/code/.envrc"
+  if command -v direnv &>/dev/null; then
+    direnv allow "$HOME/code"
+    echo "direnv allowed ~/code"
+  else
+    echo "direnv not found — run 'direnv allow ~/code' after installing direnv"
+  fi
+else
+  echo "~/code/.envrc already exists, skipping"
+fi
+
+# --- keychain secrets ---
+"$DOTFILES/keychain/setup.sh"
 
 echo "done. restart your shell to apply changes."
