@@ -14,17 +14,11 @@ Theme: [Tinacious Design](https://github.com/tinacious/vscode-tinacious-design-s
 ## Setup
 
 ```sh
-# install FiraCode Nerd Font + keychain secrets
+# fonts, nix config, keychain secrets, and home-manager activation
 ./install.sh
-
-# first-time home-manager activation (bootstraps via nix run)
-nix --extra-experimental-features "nix-command flakes" run home-manager/master -- switch --flake ~/code/jh/jh-env
-
-# allow direnv in ~/code
-direnv allow ~/code
 ```
 
-After the first activation, `home-manager` is on your PATH:
+After the first run, `home-manager` is on your PATH. To re-apply after editing configs:
 
 ```sh
 home-manager switch --flake ~/code/jh/jh-env
@@ -35,13 +29,14 @@ home-manager switch --flake ~/code/jh/jh-env
 ```
 flake.nix                -> home-manager config + project dev shells
 nix/home.nix             -> all home-manager modules (zsh, git, direnv, etc.)
+nix/nix.conf             -> ~/.config/nix/nix.conf
 starship/starship.toml   -> ~/.config/starship.toml
 wezterm/wezterm.lua      -> ~/.wezterm.lua
 vscode/settings.json     -> ~/Library/Application Support/Code/User/settings.json
 git/.gitconfig-personal  -> ~/.gitconfig-personal
 git/.gitconfig-work      -> ~/.gitconfig-work
-nix/nix.conf             -> ~/.config/nix/nix.conf
 claude/settings.json     -> ~/.claude/settings.json
+get-key.sh               -> ~/.claude/get-key.sh
 ```
 
 ## What home-manager provides
@@ -50,7 +45,7 @@ Base tools always available in your shell: git, nodenv, starship, bat, ripgrep, 
 
 ## Dev shells
 
-Project-specific tools activated via direnv or manually:
+Project-specific tools activated manually:
 
 | Shell | Command | Extra packages |
 |-------|---------|----------------|

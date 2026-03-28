@@ -61,7 +61,6 @@
       gco = "git checkout";
       loc = ''git ls-files | grep ".*js$" | xargs wc -l'';
       tf = "terraform";
-      nix-dev = "nix develop ~/code/jh/jh-env --command zsh";
       nix-stripe = "nix develop ~/code/jh/jh-env#stripe --command zsh";
       nix-data = "nix develop ~/code/jh/jh-env#sage --command zsh";
     };

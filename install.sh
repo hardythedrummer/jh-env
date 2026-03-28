@@ -15,9 +15,21 @@ else
   echo "FiraCode Nerd Font installed"
 fi
 
+# --- nix config (enables flakes before first home-manager run) ---
+if [ ! -e ~/.config/nix/nix.conf ]; then
+  mkdir -p ~/.config/nix
+  cp "$DOTFILES/nix/nix.conf" ~/.config/nix/nix.conf
+  echo "nix.conf installed"
+else
+  echo "nix.conf already exists, skipping"
+fi
+
 # --- keychain secrets ---
 "$DOTFILES/keychain/setup.sh"
 
-echo ""
-echo "done. now run:"
-echo "  home-manager switch --flake ~/code/jh/jh-env"
+# --- home-manager ---
+if command -v home-manager &>/dev/null; then
+  home-manager switch --flake "$DOTFILES"
+else
+  nix run home-manager/master -- switch --flake "$DOTFILES"
+fi
