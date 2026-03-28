@@ -1,67 +1,48 @@
 {
-  description = "Joey's dev environment shells";
+  description = "Joey's dev environment";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs }:
+  outputs = { self, nixpkgs, home-manager }:
     let
       systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
       forAllSystems = fn: nixpkgs.lib.genAttrs systems (system: fn {
         pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
       });
-
-      # packages included in every shell
-      basePackages = pkgs: with pkgs; [
-        git
-        nodenv
-        starship
-        bat
-        ripgrep
-        jq
-        direnv
-        zsh-autosuggestions
-        zsh-syntax-highlighting
-      ];
-
-      # export plugin paths for zshrc to source
-      baseShellHook = pkgs: ''
-        export ZSH_AUTOSUGGEST_PLUGIN="${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-        export ZSH_SYNTAX_HIGHLIGHT_PLUGIN="${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-      '';
-
-      # helper to create a shell with base packages + extras
-      mkDevShell = pkgs: { name, description, extraPackages ? [], shellHook ? "" }:
-        pkgs.mkShell {
-          inherit name description;
-          packages = (basePackages pkgs) ++ extraPackages;
-          shellHook = shellHook + (baseShellHook pkgs);
-        };
     in
     {
+      # --- home-manager configuration ---
+      homeConfigurations."joey.hardy" = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          system = "aarch64-darwin";
+          config.allowUnfree = true;
+        };
+        modules = [ ./nix/home.nix ];
+      };
+
+      # --- project-specific dev shells ---
       devShells = forAllSystems ({ pkgs }: {
 
-        default = mkDevShell pkgs {
-          name = "dev";
-          description = "Base dev shell with git, node, and starship";
-        };
-
-        stripe = mkDevShell pkgs {
+        stripe = pkgs.mkShell {
           name = "stripe";
           description = "Stripe dev shell with terraform and stripe-cli";
-          extraPackages = with pkgs; [ 
-            terraform 
-            terragrunt 
-            stripe-cli 
+          packages = with pkgs; [
+            terraform
+            terragrunt
+            stripe-cli
           ];
-          shellHook = ''alias tf="terraform"'';
         };
 
-        sage = mkDevShell pkgs {
+        sage = pkgs.mkShell {
           name = "data";
           description = "Data analysis shell with python, jupyter, and AWS";
-          extraPackages = with pkgs; [
+          packages = with pkgs; [
             nbstripout
             (python3.withPackages (py: [
               py.jupyter

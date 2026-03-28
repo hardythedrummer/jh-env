@@ -2,6 +2,8 @@
 
 Dev environment config: zsh, wezterm, starship, nix, vscode.
 
+Managed with [home-manager](https://github.com/nix-community/home-manager) (standalone, no nix-darwin).
+
 Theme: [Tinacious Design](https://github.com/tinacious/vscode-tinacious-design-syntax) across all tools.
 
 ## Prerequisites
@@ -12,37 +14,48 @@ Theme: [Tinacious Design](https://github.com/tinacious/vscode-tinacious-design-s
 ## Setup
 
 ```sh
-# symlink configs + install FiraCode Nerd Font
+# install FiraCode Nerd Font + keychain secrets
 ./install.sh
 
-# enter a dev shell (starship, nodenv, bat, direnv, etc.)
-nix-dev
+# first-time home-manager activation (bootstraps via nix run)
+nix --extra-experimental-features "nix-command flakes" run home-manager/master -- switch --flake ~/code/jh/jh-env
+
+# allow direnv in ~/code
+direnv allow ~/code
+```
+
+After the first activation, `home-manager` is on your PATH:
+
+```sh
+home-manager switch --flake ~/code/jh/jh-env
 ```
 
 ## Structure
 
 ```
-flake.nix                -> nix dev shells (default, stripe, sage)
-flake.lock               -> pinned nixpkgs-unstable
-zsh/.zshrc               -> ~/.zshrc
-wezterm/wezterm.lua      -> ~/.wezterm.lua
+flake.nix                -> home-manager config + project dev shells
+nix/home.nix             -> all home-manager modules (zsh, git, direnv, etc.)
 starship/starship.toml   -> ~/.config/starship.toml
+wezterm/wezterm.lua      -> ~/.wezterm.lua
 vscode/settings.json     -> ~/Library/Application Support/Code/User/settings.json
-git/.gitconfig           -> ~/.gitconfig
 git/.gitconfig-personal  -> ~/.gitconfig-personal
 git/.gitconfig-work      -> ~/.gitconfig-work
 nix/nix.conf             -> ~/.config/nix/nix.conf
+claude/settings.json     -> ~/.claude/settings.json
 ```
 
-## Nix shells
+## What home-manager provides
 
-All shells include: git, nodenv, starship, bat, direnv, zsh-autosuggestions, zsh-syntax-highlighting.
+Base tools always available in your shell: git, nodenv, starship, bat, ripgrep, jq, direnv, nix-direnv, zsh-autosuggestions, zsh-syntax-highlighting, httpie, btop, zoxide.
+
+## Dev shells
+
+Project-specific tools activated via direnv or manually:
 
 | Shell | Command | Extra packages |
 |-------|---------|----------------|
-| default | `nix-dev` | — |
 | stripe | `nix-stripe` | terraform, terragrunt, stripe-cli |
-| sage | `nix-sage` | python, jupyter, pandas, awscli, stripe-cli |
+| sage | `nix-data` | python, jupyter, pandas, numpy, scipy |
 
 Update all packages: `nix flake update`
 

@@ -65,6 +65,9 @@ ZSH_HIGHLIGHT_STYLES[redirection]='fg=#f85b9e'        # pink — > >> <
 ZSH_HIGHLIGHT_STYLES[comment]='fg=#636363'             # dim — comments
 ZSH_HIGHLIGHT_STYLES[arg0]='fg=#2ec84a'               # green — first word
 
+# -- zoxide --
+eval "$(zoxide init zsh)"
+
 # --- direnv ---
 [ -f /opt/homebrew/bin/direnv ] && eval "$(/opt/homebrew/bin/direnv hook zsh)"
 
