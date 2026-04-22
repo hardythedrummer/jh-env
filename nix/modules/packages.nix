@@ -11,7 +11,7 @@
   };
 
   home.packages = with pkgs; [
-    nodenv
+    fnm
     httpie
   ];
 }

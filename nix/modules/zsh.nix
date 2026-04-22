@@ -56,6 +56,10 @@
       # --- path ---
       export PATH="$HOME/.local/bin:$HOME/bin:/usr/local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 
+      # --- env vars ---
+      export BITBUCKET_PAT="$(op read 'op://Employee/Bitbucket PAT/credential')"
+      export JIRA_PAT="$(op read 'op://Employee/Jira PAT/credential')"
+
       # --- completion styles ---
       zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
       zstyle ':completion:*' menu select
@@ -65,8 +69,8 @@
       bindkey '^[[A' history-search-backward
       bindkey '^[[B' history-search-forward
 
-      # --- nodenv ---
-      eval "$(nodenv init - zsh)"
+      # --- fnm ---
+      eval "$(fnm env --use-on-cd --shell zsh)"
 
       # --- nix ---
       if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
