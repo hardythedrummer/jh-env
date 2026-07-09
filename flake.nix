@@ -11,16 +11,16 @@
 
   outputs = { self, nixpkgs, home-manager }:
     let
-      systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
+      systems = [ "x86_64-linux" "aarch64-linux" ];
       forAllSystems = fn: nixpkgs.lib.genAttrs systems (system: fn {
         pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
       });
     in
     {
       # --- home-manager configuration ---
-      homeConfigurations."joey.hardy" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."joeyh" = home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
-          system = "aarch64-darwin";
+          system = "x86_64-linux";
           config.allowUnfree = true;
         };
         modules = [ ./nix/home.nix ];

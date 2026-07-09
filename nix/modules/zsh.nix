@@ -50,6 +50,7 @@
       tf = "terraform";
       nix-stripe = "nix develop ~/code/jh/jh-env#stripe --command zsh";
       nix-data = "nix develop ~/code/jh/jh-env#sage --command zsh";
+      update = "pacman -Syu";
     };
 
     initContent = ''

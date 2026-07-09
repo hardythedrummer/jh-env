@@ -24,6 +24,10 @@
         path = "~/.gitconfig-personal";
       }
       {
+        condition = "gitdir:~/apps/";
+        path = "~/.gitconfig-personal";
+      }
+      {
         condition = "gitdir:~/code/";
         path = "~/.gitconfig-work";
       }

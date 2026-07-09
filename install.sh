@@ -10,7 +10,7 @@ else
   echo "installing FiraCode Nerd Font..."
   tmpdir=$(mktemp -d)
   curl -fsSL "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/FiraCode.zip" -o "$tmpdir/FiraCode.zip"
-  unzip -qo "$tmpdir/FiraCode.zip" "*.ttf" -d ~/Library/Fonts/
+  unzip -qo "$tmpdir/FiraCode.zip" "*.ttf" -d /usr/share/fonts/TTF
   rm -rf "$tmpdir"
   echo "FiraCode Nerd Font installed"
 fi
