@@ -15,6 +15,5 @@
     ./modules/packages.nix
     ./modules/dotfiles.nix
     ./modules/claude.nix
-    ./modules/containers.nix
   ];
 }
